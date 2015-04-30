@@ -8,12 +8,12 @@ set token tk123456789
 req: "creating new user"
   head Allow-Original $original
   cookie token $token
-  body '{"id":"xiaoming"}'
+  body '{"id":"$builtin_uuid:uid"}'
 post:
   http://example.com/api/users
 resp:
   head Content-Type applicatoin/json
-  body '{"result_code", 1}'
+  body '{"result_code":1, "id":@uid}'
 ```
 
 # usage looks like
