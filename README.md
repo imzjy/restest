@@ -14,13 +14,24 @@ post:
 resp:
   head Content-Type applicatoin/json
   body '{"result_code":1, "id":@uid}'
+end
+
+req: "delete exist user"
+  head Allow-Original $original
+  cookie token $token
+  body '{"id":"$builtin_uuid:uid"}'
+post:
+  http://example.com/api/users
+resp:
+  head Content-Type applicatoin/json
+  body '{"result_code":1, "id":@uid}'
+end
 ```
 
 # usage looks like
 save above file as `create_user.rtt`
 
-`$restest --original=example.com -c 10, -n 1000 -v create_user.rtt`
+`$restest --original=example.com  -v create_user.rtt`
 
-- -c cocurrent number of request
 - -n total number of request
 - -v verbose
