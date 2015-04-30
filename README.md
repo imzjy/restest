@@ -20,7 +20,7 @@ req: "delete exist user"
   head Allow-Original $original
   cookie token $token
   body '{"id":"$builtin_uuid:uid"}'
-post:
+delete:
   http://example.com/api/users
 resp:
   head Content-Type applicatoin/json
